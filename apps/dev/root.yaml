@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sneakertrail-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Sneakertail/sneakertail-gitops.git
+    targetRevision: HEAD
+    path: apps/dev/children
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
