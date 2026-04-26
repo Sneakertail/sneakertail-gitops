@@ -6,9 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Sneakertail/payment-service.git
+    repoURL: https://github.com/Sneakertail/sneakertail-charts.git
     targetRevision: dev
-    path: k8s-manifests
+    path: charts/payment-service
+    helm:
+      releaseName: payment-service
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
@@ -16,3 +20,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

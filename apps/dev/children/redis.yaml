@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: frontend-dev
+  name: redis-dev
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/Sneakertail/sneakertail-charts.git
     targetRevision: dev
-    path: charts/frontend
+    path: charts/redis
     helm:
-      releaseName: frontend
+      releaseName: redis
       valueFiles:
         - values-dev.yaml
   destination:

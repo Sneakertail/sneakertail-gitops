@@ -1,24 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: frontend-dev
+  name: product-service-prod
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/Sneakertail/sneakertail-charts.git
-    targetRevision: dev
-    path: charts/frontend
+    targetRevision: main
+    path: charts/product-service
     helm:
-      releaseName: frontend
+      releaseName: product-service
       valueFiles:
-        - values-dev.yaml
+        - values-prod.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: dev
+    namespace: prod
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
