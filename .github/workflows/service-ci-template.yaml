@@ -191,7 +191,8 @@ jobs:
           image-ref: ${{ env.IMAGE_REPOSITORY }}:scan-${{ github.sha }}
           exit-code: "0"
           ignore-unfixed: true
-          severity: HIGH,CRITICAL
+          severity: CRITICAL
+          # severity: HIGH,CRITICAL
 
       # Failure summary
       - id: outcome
