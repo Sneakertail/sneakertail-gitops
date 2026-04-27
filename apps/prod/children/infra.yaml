@@ -1,0 +1,21 @@
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: infra-prod
+#   namespace: argocd
+# spec:
+#   project: default
+#   source:
+#     repoURL: https://github.com/Sneakertail/sneakertail-charts.git
+#     targetRevision: main
+#     path: infra
+#     helm:
+#       releaseName: infra
+#       valueFiles:
+#         - values-prod.yaml
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: prod
+#   syncPolicy:
+#     syncOptions:
+#       - CreateNamespace=true

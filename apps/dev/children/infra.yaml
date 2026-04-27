@@ -9,6 +9,10 @@ spec:
     repoURL: https://github.com/Sneakertail/sneakertail-charts.git
     targetRevision: dev
     path: infra
+    helm:
+      releaseName: infra
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
