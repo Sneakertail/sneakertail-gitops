@@ -1,14 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: platform-dev
+  name: postgres-dev
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/Sneakertail/sneakertail-platform.git
+    repoURL: https://github.com/Sneakertail/sneakertail-charts.git
     targetRevision: dev
-    path: k8s-manifests
+    path: charts/postgres
+    helm:
+      releaseName: postgres
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
@@ -16,3 +20,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
